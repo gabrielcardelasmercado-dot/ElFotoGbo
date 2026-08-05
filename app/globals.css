@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 9 9 9;
+  --card: 17 17 17;
+  --foreground: 255 255 255;
+  --muted-foreground: 189 189 189;
+  --border: 255 255 255 / 5%;
+  --radius: 0.5rem;
+}
+
+* {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: #090909;
+  color: #ffffff;
+  font-family: var(--font-sans), 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hide native cursor on desktop where custom cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Minimal scrollbar */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .tracking-luxe {
+    letter-spacing: 0.35em;
+  }
+  .tracking-luxe-sm {
+    letter-spacing: 0.2em;
+  }
+  .bg-ink {
+    background-color: #090909;
+  }
+  .bg-card-ink {
+    background-color: #111111;
+  }
+  .text-muted-ink {
+    color: #bdbdbd;
+  }
+  .border-hairline {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Slow cinematic zoom keyframe */
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.animate-slow-zoom {
+  animation: slowZoom 18s ease-out forwards;
+}
+
+@keyframes scrollHint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+.animate-scroll-hint {
+  animation: scrollHint 2.4s ease-in-out infinite;
+}
