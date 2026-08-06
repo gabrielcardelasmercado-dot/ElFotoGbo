@@ -43,14 +43,24 @@ export function EditorialGallery({ images, title }: Props) {
   const next = () =>
     setActive((i) => (i === null ? i : (i + 1) % images.length));
 
-  // Slice images into rows according to the pattern
-  const rows: { type: RowType; items: string[] }[] = [];
-  let cursor = 0;
-  for (const type of PATTERN) {
-    const count = type === 'feature' ? 1 : type === 'pair' ? 2 : 3;
-    rows.push({ type, items: images.slice(cursor, cursor + count) });
-    cursor += count;
-  }
+  // Build rows dynamically so every image in the folder is displayed
+const rows: { type: RowType; items: string[] }[] = [];
+
+let cursor = 0;
+let patternIndex = 0;
+
+while (cursor < images.length) {
+  const type = PATTERN[patternIndex % PATTERN.length];
+  const count = type === 'feature' ? 1 : type === 'pair' ? 2 : 3;
+
+  rows.push({
+    type,
+    items: images.slice(cursor, cursor + count),
+  });
+
+  cursor += count;
+  patternIndex++;
+}
 
   return (
     <section className="px-6 pb-30 pt-8 md:px-10">
