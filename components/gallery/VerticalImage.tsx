@@ -71,6 +71,7 @@ export function VerticalImage({
             alt={alt}
             fill
             priority={priority}
+              unoptimized
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition-transform duration-1000 ease-luxe group-hover:scale-[1.04]"
           />
